@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5fccc34c-5905-4167-9aaa-fb07a4f3768f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/compile.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.scala" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1iAncZ3K7RQMcJzNNTRzA1m7hTR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5fccc34c-5905-4167-9aaa-fb07a4f3768f" name="Default Changelist" comment="" />
+      <created>1601359343599</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601359343599</updated>
+      <workItem from="1601359344626" duration="141000" />
+      <workItem from="1601391569993" duration="852000" />
+      <workItem from="1601471263752" duration="4000" />
+      <workItem from="1601473585356" duration="78000" />
+      <workItem from="1601480409406" duration="396000" />
+      <workItem from="1601539442553" duration="47000" />
+      <workItem from="1601540690053" duration="775000" />
+      <workItem from="1601710060982" duration="337000" />
+      <workItem from="1601745389646" duration="12000" />
+      <workItem from="1602035139843" duration="3644000" />
+      <workItem from="1602123125325" duration="16000" />
+      <workItem from="1602123183413" duration="13748000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="0" y="110" width="1187" height="856" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602134874103">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="110" width="1187" height="856" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602134874103" />
+    <state x="180" y="430" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog" timestamp="1601359389641">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="180" y="430" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601359389641" />
+    <state x="257" y="279" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1602126496461">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="257" y="279" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602126496461" />
+    <state x="395" y="116" width="1141" height="883" key="SettingsEditor" timestamp="1602127395007">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="395" y="116" width="1141" height="883" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1602127395007" />
+  </component>
+</project>
