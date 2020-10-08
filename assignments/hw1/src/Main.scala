@@ -75,11 +75,23 @@ object Main
      */
     def integral(f: Double => Double, a: Double, b: Double): Double =
     {
-        def computeSum(f: Double => Double, a: Double, b: Double, n: Int): Double =
+        @tailrec
+        def calculateSum(f: Double => Double, a: Double, b: Double, n: Int, k: Int, tempSum: Double): Double =
         {
-
+            if (k == 1) f((b - a) / n + a) + tempSum
+            else calculateSum(f, a, b, n, k - 1, tempSum + f(((b - a) * k) / n + a))
         }
 
+        @tailrec
+        def intIter(f: Double => Double, a: Double, b: Double, n: Int): Double =
+        {
+            val x = ((b - a) / n) * calculateSum(f, a, b, n, n, 0.0)
+            val y = ((b - a)/ (2 * n)) * calculateSum(f, a, b, 2 * n, 2 * n, 0.0)
+            if (x - y < 0.0005 && y - x < 0.0005 || n > 10000000) x
+            else intIter(f, a, b, 2 * n)
+        }
+
+        intIter(f, a, b, 1000)
     }
 
     /*
