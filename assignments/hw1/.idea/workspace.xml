@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fccc34c-5905-4167-9aaa-fb07a4f3768f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/hw1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/pp202002/hw1/Main$.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/pp202002/hw1/Main$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/pp202002/hw1test/Test$.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/pp202002/hw1test/Test$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +36,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../DataStructurePractice-JAVA-" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
@@ -81,7 +81,24 @@
       <workItem from="1602123183413" duration="15533000" />
       <workItem from="1602150857430" duration="4958000" />
       <workItem from="1602159273715" duration="17000" />
-      <workItem from="1602159834434" duration="9117000" />
+      <workItem from="1602159834434" duration="17613000" />
+      <workItem from="1602182848361" duration="1471000" />
+      <workItem from="1602204803435" duration="514000" />
+      <workItem from="1602238430650" duration="26000" />
+      <workItem from="1602238470052" duration="3394000" />
+      <workItem from="1602244952386" duration="2538000" />
+      <workItem from="1602255014894" duration="482000" />
+      <workItem from="1602257136919" duration="516000" />
+      <workItem from="1602301399901" duration="74000" />
+      <workItem from="1602727388787" duration="282000" />
+      <workItem from="1602741426973" duration="610000" />
+      <workItem from="1602846746747" duration="17000" />
+      <workItem from="1602952602622" duration="615000" />
+      <workItem from="1603202512426" duration="280000" />
+      <workItem from="1603271740795" duration="176000" />
+      <workItem from="1603531872444" duration="10000" />
+      <workItem from="1603532068839" duration="1298000" />
+      <workItem from="1604139747952" duration="691000" />
     </task>
     <servers />
   </component>
@@ -101,6 +118,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="257" y="279" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602126496461" />
+    <state x="678" y="217" key="FileChooserDialogImpl" timestamp="1603271917367">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="678" y="217" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603271917367" />
     <state width="1869" height="261" key="GridCell.Tab.0.bottom" timestamp="1602159264073">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -117,10 +138,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1869" height="261" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602159264073" />
-    <state x="395" y="116" width="1141" height="883" key="SettingsEditor" timestamp="1602127395007">
+    <state x="504" y="133" width="1141" height="883" key="SettingsEditor" timestamp="1602257282357">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="395" y="116" width="1141" height="883" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1602127395007" />
+    <state x="504" y="133" width="1141" height="883" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1602257282356" />
     <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1602162393915">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

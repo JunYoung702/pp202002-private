@@ -113,8 +113,15 @@ object Main
      */
     def ppa(p: (Int, Int) => Int, a: Int, b: Int): Int =
     {
-        if (a <= 0 || b <= 0) p(a, b)
-        else if (p(a, b) % 2 == 0) p(a, ppa(p, a - 1, b))
-        else p(ppa(p, a, b - 1), b)
+        @tailrec
+        def ppa_cont(a: Int, b: Int, cont: Int => TailRec[Int]): TailRec[Int] =
+        {
+            if (a <= 0 || b <= 0) cont(p(a, b))
+            else if (p(a, b) % 2 == 0) ppa_cont(a - 1, b, (x) => tailcall(cont(p(a, x))))
+            else ppa_cont(a, b - 1, (x) => tailcall(cont(p(x, b))))
+        }
+
+        def cont(x: Int): TailRec[Int] = done(x)
+        ppa_cont(a, b, cont).result
     }
 }

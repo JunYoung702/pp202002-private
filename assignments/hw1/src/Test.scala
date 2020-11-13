@@ -23,4 +23,6 @@ object Test extends App {
   // Problem 3
   print_result(ppa((a, b) => a + b, 100, 200) == 20100)
   print_result(ppa((a, b) => 3*a*a - b, 20, 10) == 347099274)
+  println(ppa((a, b) => a + b, 100, 200))
+
 }
