@@ -1,7 +1,10 @@
 package pp202002.hw2.Data
 
 sealed abstract class Token
-// WRITE YOUR CODE HERE
+case class TLit(c: Char) extends Token
+case class TOr(c: Char) extends Token
+case class TStar(c: Char) extends Token
+case class TPar(c: Char) extends Token
 
 sealed abstract class Exp
 case class EChar(c:Char) extends Exp
