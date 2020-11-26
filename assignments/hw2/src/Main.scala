@@ -15,17 +15,19 @@ object Main {
       type Func3 = { val c: C } => { val a: A }
       type Func4 = { val f: F } => { val d: D }
 
-      type Ty1 = {
-        def apply: { val func: Func1 ; val c: C } => { val b: B ; val d: D }
-        def function1: { val func: Func3 } => { val c: C }
+      type Ty1 =
+      {
+        def apply: { val func: Func1 ; val c: C } => { val b: B ; val d: D } // A -> B ; C  => B ; D
+        def function1: { val func: Func3 } => { val c: C } // C -> A  => C
         val a: A
         val b: B
         val d: D
       }
 
-      type Ty2 = {
-        def apply: { val func: Func2 ; val e: E } => { val b: B ; val f: F ; val c: C }
-        def function1: { val func: Func4 } => { val c: C; val e:E }
+      type Ty2 =
+      {
+        def apply: { val func: Func2 ; val e: E } => { val b: B ; val f: F ; val c: C } // B -> A; E => B, F, C
+        def function1: { val func: Func4 } => { val c: C; val e:E } // F -> D => C ; E
         val a: A
         val c: C
         val d: D
@@ -37,7 +39,13 @@ object Main {
        */
       // type CommonTy = Any // Any
 
-      type CommonTy = ???
+      type CommonTy =
+      {
+        //def apply: {} => { val b: B }
+        //def function1: {} => { val c: C }
+        val a: A
+        val d: D
+      }
     }
   }
 
@@ -112,9 +120,26 @@ object Main {
         Therefore, you can't match List like "case Cons(hd, tl) => ..."
    */
 
-  def lexer(l: List[Char]): List[Token] = ???
+  def lexer(l: List[Char]): List[Token] =
+  {
+      def singleLexer(c: Char): Token =
+      {
+          c match {
+              case '(' => TPar('(')
+              case ')' => TPar(')')
+              case '|' => TOr('|')
+              case '*' => TStar('*')
+              case x => TLit(x)
+          }
+      }
+      l match {
+          case hd::tl => singleLexer(hd) :: lexer(tl)
+          case _ => Nil
+      }
+  }
 
-  def parser(l: List[Token]): Exp = ???
+    def parser(l: List[Token]): Exp = {
+    }
 
   def converter(l: List[Char]): Exp = {
     parser(lexer(l))
