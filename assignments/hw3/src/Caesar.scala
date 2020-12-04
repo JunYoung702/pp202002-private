@@ -14,26 +14,41 @@ package pp202002.hw3
   The input will be restricted to upper cased alphabets. ('A'-'Z')
  */
 
-object Caesar extends CipherGen[Int] {
-  /** Makes new encoder
-   *
-   * @param initSetting shifted value (0 <= initSetting < 26)
-   * @return new Caesar cipher encryptor
-   */
-  def buildEncryptor(initSetting: Int): CaesarEncryptor = ???
+object Caesar extends CipherGen[Int]
+{
+    /** Makes new encoder
+     *
+     * @param initSetting shifted value (0 <= initSetting < 26)
+     * @return new Caesar cipher encryptor
+     */
+    def buildEncryptor(initSetting: Int): CaesarEncryptor = new CaesarEncryptor(initSetting)
 
-  /** Makes new decoder
-   *
-   * @param initSetting shifted value (0 <= initSetting < 26)
-   * @return new Caesar cipher decryptor
-   */
-  def buildDecryptor(initSetting: Int): CaesarDecryptor = ???
+
+    /** Makes new decoder
+     *
+     * @param initSetting shifted value (0 <= initSetting < 26)
+     * @return new Caesar cipher decryptor
+     */
+    def buildDecryptor(initSetting: Int): CaesarDecryptor = new CaesarDecryptor(initSetting)
+
 }
 
-class CaesarEncryptor(/* WRITE YOUR CODE */) extends Encryptor {
-  def encrypt(c: Char): (Char, CaesarEncryptor) = ???
+class CaesarEncryptor(initSetting: Int) extends Encryptor
+{
+    def encrypt(c: Char): (Char, CaesarEncryptor) =
+    {
+        def cNum = c.toInt
+
+        ((((cNum - 'A'.toInt + initSetting) % 26) + 'A'.toInt).toChar, this)
+    }
 }
 
-class CaesarDecryptor(/* WRITE YOUR CODE */) extends Decryptor {
-  def decrypt(c: Char): (Char, CaesarDecryptor) = ???
+class CaesarDecryptor(initSetting: Int) extends Decryptor
+{
+    def decrypt(c: Char): (Char, CaesarDecryptor) =
+    {
+        def cNum = c.toInt
+
+        ((((cNum - 'A'.toInt + 26 - initSetting) % 26) + 'A'.toInt).toChar, this)
+    }
 }

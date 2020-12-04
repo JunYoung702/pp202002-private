@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fccc34c-5905-4167-9aaa-fb07a4f3768f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/pp202002/hw1/Main$.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/pp202002/hw1/Main$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/pp202002/hw1test/Test$.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/pp202002/hw1test/Test$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.scala" afterDir="false" />
-    </list>
+    <list default="true" id="5fccc34c-5905-4167-9aaa-fb07a4f3768f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +30,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../DataStructurePractice-JAVA-" />
+    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/PA03_skeleton" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
@@ -99,6 +93,7 @@
       <workItem from="1603531872444" duration="10000" />
       <workItem from="1603532068839" duration="1298000" />
       <workItem from="1604139747952" duration="691000" />
+      <workItem from="1606845993474" duration="60000" />
     </task>
     <servers />
   </component>
@@ -118,9 +113,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="257" y="279" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602126496461" />
-    <state x="678" y="217" key="FileChooserDialogImpl" timestamp="1603271917367">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="972" y="232" key="FileChooserDialogImpl" timestamp="1606846052721">
+      <screen x="0" y="0" width="2752" height="1112" />
     </state>
+    <state x="972" y="232" key="FileChooserDialogImpl/-1920.0.1920.1030/0.0.2752.1112@0.0.2752.1112" timestamp="1606846052721" />
     <state x="678" y="217" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603271917367" />
     <state width="1869" height="261" key="GridCell.Tab.0.bottom" timestamp="1602159264073">
       <screen x="0" y="0" width="1920" height="1040" />

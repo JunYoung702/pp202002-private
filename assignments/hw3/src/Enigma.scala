@@ -65,40 +65,142 @@ package pp202002.hw3
  */
 case class EnigmaSettings(rotorState: List[Wire], reflectorState: Wire)
 
-object Enigma extends CipherGen[EnigmaSettings] {
-  def buildEncryptor(initSetting: EnigmaSettings): Enigma = ???
+object Enigma extends CipherGen[EnigmaSettings]
+{
+    def buildEncryptor(initSetting: EnigmaSettings): Enigma = {
+        val rotor = Rotor(initSetting.rotorState, initSetting.rotorState)
+        new Enigma(rotor.next(), initSetting.reflectorState, initSetting.rotorState)
+    }
 
-  def buildDecryptor(initSetting: EnigmaSettings): Enigma = ???
+    def buildDecryptor(initSetting: EnigmaSettings): Enigma = {
+        val rotor = Rotor(initSetting.rotorState, initSetting.rotorState)
+        new Enigma(rotor.next(), initSetting.reflectorState, initSetting.rotorState)
+    }
 }
 
-class Enigma(/* WRITE YOUR CODE */) extends Encryptor with Decryptor {
-  def encrypt(c: Char): (Char, Enigma) = ???
+class Enigma(rotorState: List[Wire], reflectorState: Wire, initState: List[Wire]) extends Encryptor with Decryptor
+{
 
-  // Decryption of Enigma machine is same to the Encryption
-  def decrypt(c: Char): (Char, Enigma) = encrypt(c)
+    val rotor = Rotor(rotorState, initState)
+    val reflector = Reflector(reflectorState)
+
+
+    def encrypt(c: Char): (Char, Enigma) =
+    {
+        val res = rotor.backward(reflector.forward(rotor.forward(c)))
+        (res, new Enigma(rotor.next() , reflectorState, initState))
+    }
+
+    // Decryption of Enigma machine is same to the Encryption
+    def decrypt(c: Char): (Char, Enigma) = encrypt(c)
 }
 
-sealed abstract class EnigmaParts {
-  def forward(c: Char): Char
+sealed abstract class EnigmaParts
+{
+    def forward(c: Char): Char
 
-  def backward(c: Char): Char
+    def backward(c: Char): Char
 }
 
-case class Wire(connection: String) extends EnigmaParts {
-  def forward(c: Char): Char = connection(c - 'A')
+case class Wire(connection: String) extends EnigmaParts
+{
+    def forward(c: Char): Char = connection(c - 'A')
 
-  def backward(c: Char): Char = ???
+    def backward(c: Char): Char =
+    {
+        def find(c: Char, n: Int): Int =
+        {
+            if (connection(n) == c) n
+            else find(c, n + 1)
+        }
+
+        (find(c, 0) + 'A').toChar
+    }
 }
 
-case class Rotor(/* WRITE YOUR CODE */) extends EnigmaParts {
-  def forward(c: Char): Char = ???
+case class Rotor(wires: List[Wire], initState: List[Wire]) extends EnigmaParts
+{
+    def forward(c: Char): Char =
+    {
+        def forwardIter(c: Char, l: List[Wire]): Char =
+        {
+            l match
+            {
+                case hd :: tl => forwardIter(hd.forward(c), tl)
+                case Nil => c
+            }
+        }
 
-  def backward(c: Char): Char = ???
+        forwardIter(c, wires)
+    }
+
+    def backward(c: Char): Char =
+    {
+        def backwardIter(c: Char, l: List[Wire]): Char =
+        {
+            l match
+            {
+                case hd :: tl => hd.backward(backwardIter(c, tl))
+                case Nil => c
+            }
+        }
+
+        backwardIter(c, wires)
+    }
+
+    def tick(value: Wire): Wire =
+    {
+        val s = value.connection
+        val x = s.length
+
+
+        def tickIter(s: String, n: Int): String = {
+            if (n < x - 1) {
+                //println("CASE 0")
+                val c = ((s(n + 1) - 'A'.toInt - 1 + 26) % 26 + 'A'.toInt ).toChar
+                c.toString + tickIter(s, n + 1)
+            }
+            else if (n == x - 1)  {
+                val c = ((s(0) - 'A'.toInt - 1 + 26) % 26 + 'A'.toInt ).toChar
+                c.toString + tickIter(s, n + 1)
+            }
+            else {
+                //println("CASE ELSE")
+                ""
+            }
+        }
+        Wire(tickIter(s, 0))
+    }
+
+    def next(): List[Wire] =
+    {
+        def nextIter(n: Int, state: Boolean, l: List[Wire]): List[Wire] = {
+            l match {
+                case Nil => Nil
+                case hd::tl if (n == 0) => {
+                    if (tick(hd).connection == initState.head.connection) {
+                        tick(hd) +: nextIter(n + 1, true, tl)
+                    }
+                    else {
+                        tick(hd) +: nextIter(n + 1, false, tl)
+                    }
+                }
+                case hd::tl if (state) => {
+                    if (tick(hd) == initState(n)) tick(hd) +: nextIter(n + 1, true, tl)
+                    else tick(hd) +: nextIter(n + 1, false, tl)
+                }
+                case x => x
+            }
+        }
+
+        nextIter(0, false, wires)
+    }
 }
 
-case class Reflector(/* WRITE YOUR CODE */) extends EnigmaParts {
-  def forward(c: Char): Char = ???
+case class Reflector(wire: Wire) extends EnigmaParts
+{
+    def forward(c: Char): Char = wire.forward(c)
 
-  def backward(c: Char): Char = ???
+    def backward(c: Char): Char = wire.backward(c)
 }
 

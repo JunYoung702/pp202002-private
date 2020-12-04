@@ -1,5 +1,6 @@
 package pp202002.hw3
 
+
 /*
   Exercise 1: Basic trait
 
@@ -24,7 +25,22 @@ trait Encryptor {
    * @param s a string to be encrypted
    * @return an encrypted string and a next state of this encryptor
    */
-  def encrypt(s: String): (String, Encryptor) = ???
+  def encrypt(s: String): (String, Encryptor) = {
+      val sArr = s.toCharArray
+      val sLen = sArr.length
+      def encryptIter(sArr: Array[Char], sLen: Int, index: Int, state: Encryptor): (String, Encryptor) = {
+          if (index < sLen - 1) {
+              val x = state.encrypt(sArr(index))
+              val y = encryptIter(sArr, sLen, index + 1, x._2)
+              (x._1 +: y._1 , y._2)
+          }
+          else {
+              val x = state.encrypt(sArr(index))
+              (x._1.toString, x._2)
+          }
+      }
+     encryptIter(sArr, sLen, 0, this)
+  }
 }
 
 
@@ -42,7 +58,22 @@ trait Decryptor {
    * @param s a string to be decrypted
    * @return a decrypted string and a next state of this decryptor
    */
-  def decrypt(s: String): (String, Decryptor) = ???
+  def decrypt(s: String): (String, Decryptor) = {
+      val sArr = s.toCharArray
+      val sLen = sArr.length
+      def decryptIter(sArr: Array[Char], sLen: Int, index: Int, state: Decryptor): (String, Decryptor) = {
+          if (index < sLen - 1) {
+              val x = state.decrypt(sArr(index))
+              val y = decryptIter(sArr, sLen, index + 1, x._2)
+              (x._1 +: y._1, y._2)
+          }
+          else {
+              val x = state.decrypt(sArr(index))
+              (x._1.toString, x._2)
+          }
+      }
+      decryptIter(sArr, sLen, 0, this)
+  }
 }
 
 /** Cipher Generator */
