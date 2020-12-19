@@ -35,8 +35,7 @@ object Caesar extends CipherGen[Int]
 
 class CaesarEncryptor(initSetting: Int) extends Encryptor
 {
-    def encrypt(c: Char): (Char, CaesarEncryptor) =
-    {
+    def encrypt(c: Char): (Char, CaesarEncryptor) = {
         def cNum = c.toInt
 
         ((((cNum - 'A'.toInt + initSetting) % 26) + 'A'.toInt).toChar, this)
@@ -45,8 +44,7 @@ class CaesarEncryptor(initSetting: Int) extends Encryptor
 
 class CaesarDecryptor(initSetting: Int) extends Decryptor
 {
-    def decrypt(c: Char): (Char, CaesarDecryptor) =
-    {
+    def decrypt(c: Char): (Char, CaesarDecryptor) = {
         def cNum = c.toInt
 
         ((((cNum - 'A'.toInt + 26 - initSetting) % 26) + 'A'.toInt).toChar, this)

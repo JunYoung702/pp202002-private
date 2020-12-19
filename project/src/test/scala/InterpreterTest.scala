@@ -25,12 +25,21 @@ class InterpreterTest extends AnyFlatSpec {
   }
 
   "Basic let" should "return 3" in {
+      /*
     val adder =
       """
         |(let ((val x 1) (val y 2)) (+ x y))
         |""".stripMargin
 
-    runAssert(adder, VInt(3))
+      runAssert(adder, VInt(3))
+
+       */
+      val newcase =
+          """
+            |(let ((def f (x sum) (match (> x 0) ((_) sum) ((_) (app f (- x 1) (+ x sum)))))) (app f 10000 0))
+            |""".stripMargin
+            println(parse(newcase))
+      runAssert(newcase, VInt(50005000))
   }
 
   "Basic def" should "return 1" in {
@@ -38,7 +47,7 @@ class InterpreterTest extends AnyFlatSpec {
       """
         |(let ((def f (x) (+ x -1))) (app f 2))
         |""".stripMargin
-
+      println(parse(adder))
     runAssert(adder, VInt(1))
   }
 
@@ -48,7 +57,9 @@ class InterpreterTest extends AnyFlatSpec {
         |(let ((val x 3) (val y (+ x 5))) (+ x y))
         |""".stripMargin
 
-    runAssert(adder, VInt(11))
+
+      println(parse(adder))
+      runAssert(adder, VInt(11))
   }
 
   "Basic def*" should "return 11" in {
@@ -56,8 +67,8 @@ class InterpreterTest extends AnyFlatSpec {
       """
         |(let ((val x 3) (def f (y) (+ x y))) (+ x (app f 5)))
         |""".stripMargin
-
-    runAssert(adder, VInt(11))
+      println(parse(adder))
+      runAssert(adder, VInt(11))
   }
 
   "Basic lazy val*" should "return 11" in {
@@ -65,7 +76,7 @@ class InterpreterTest extends AnyFlatSpec {
       """
         |(let ((val x 3) (lazy-val y (+ x 5))) (+ x y))
         |""".stripMargin
-
+    println(parse(adder))
     runAssert(adder, VInt(11))
   }
 
@@ -115,6 +126,7 @@ class InterpreterTest extends AnyFlatSpec {
 
     runAssert(fib, VInt(55))
   }
+
 
   def getNthPrime(nthPrime: String, n: Int): String =  s"(let ((val fx $nthPrime)) (app fx $n))"
 

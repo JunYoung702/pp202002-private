@@ -81,14 +81,13 @@ object Enigma extends CipherGen[EnigmaSettings]
 class Enigma(rotorState: List[Wire], reflectorState: Wire, initState: List[Wire]) extends Encryptor with Decryptor
 {
 
-    val rotor = Rotor(rotorState, initState)
-    val reflector = Reflector(reflectorState)
+    val rotor: Rotor = Rotor(rotorState, initState)
+    val reflector: Reflector = Reflector(reflectorState)
 
 
-    def encrypt(c: Char): (Char, Enigma) =
-    {
+    def encrypt(c: Char): (Char, Enigma) = {
         val res = rotor.backward(reflector.forward(rotor.forward(c)))
-        (res, new Enigma(rotor.next() , reflectorState, initState))
+        (res, new Enigma(rotor.next(), reflectorState, initState))
     }
 
     // Decryption of Enigma machine is same to the Encryption
@@ -106,10 +105,8 @@ case class Wire(connection: String) extends EnigmaParts
 {
     def forward(c: Char): Char = connection(c - 'A')
 
-    def backward(c: Char): Char =
-    {
-        def find(c: Char, n: Int): Int =
-        {
+    def backward(c: Char): Char = {
+        def find(c: Char, n: Int): Int = {
             if (connection(n) == c) n
             else find(c, n + 1)
         }
@@ -120,36 +117,29 @@ case class Wire(connection: String) extends EnigmaParts
 
 case class Rotor(wires: List[Wire], initState: List[Wire]) extends EnigmaParts
 {
-    def forward(c: Char): Char =
-    {
-        def forwardIter(c: Char, l: List[Wire]): Char =
-        {
-            l match
-            {
+    def forward(c: Char): Char = {
+        def forwardIter(c: Char, l: List[Wire]): Char = {
+            l match {
                 case hd :: tl => forwardIter(hd.forward(c), tl)
-                case Nil => c
+                case Nil      => c
             }
         }
 
         forwardIter(c, wires)
     }
 
-    def backward(c: Char): Char =
-    {
-        def backwardIter(c: Char, l: List[Wire]): Char =
-        {
-            l match
-            {
+    def backward(c: Char): Char = {
+        def backwardIter(c: Char, l: List[Wire]): Char = {
+            l match {
                 case hd :: tl => hd.backward(backwardIter(c, tl))
-                case Nil => c
+                case Nil      => c
             }
         }
 
         backwardIter(c, wires)
     }
 
-    def tick(value: Wire): Wire =
-    {
+    def tick(value: Wire): Wire = {
         val s = value.connection
         val x = s.length
 
@@ -157,43 +147,38 @@ case class Rotor(wires: List[Wire], initState: List[Wire]) extends EnigmaParts
         def tickIter(s: String, n: Int): String = {
             if (n < x - 1) {
                 //println("CASE 0")
-                val c = ((s(n + 1) - 'A'.toInt - 1 + 26) % 26 + 'A'.toInt ).toChar
+                val c = ((s(n + 1) - 'A'.toInt - 1 + 26) % 26 + 'A'.toInt).toChar
                 c.toString + tickIter(s, n + 1)
             }
-            else if (n == x - 1)  {
-                val c = ((s(0) - 'A'.toInt - 1 + 26) % 26 + 'A'.toInt ).toChar
+            else if (n == x - 1) {
+                val c = ((s(0) - 'A'.toInt - 1 + 26) % 26 + 'A'.toInt).toChar
                 c.toString + tickIter(s, n + 1)
             }
-            else {
-                //println("CASE ELSE")
-                ""
-            }
+                 else {
+                     //println("CASE ELSE")
+                     ""
+                 }
         }
+
         Wire(tickIter(s, 0))
     }
 
-    def next(): List[Wire] =
-    {
+    def next(): List[Wire] = {
         def nextIter(n: Int, state: Boolean, l: List[Wire]): List[Wire] = {
             l match {
-                case Nil => Nil
-                case hd::tl if (n == 0) => {
-                    if (tick(hd).connection == initState.head.connection) {
-                        tick(hd) +: nextIter(n + 1, true, tl)
-                    }
-                    else {
-                        tick(hd) +: nextIter(n + 1, false, tl)
-                    }
-                }
-                case hd::tl if (state) => {
-                    if (tick(hd) == initState(n)) tick(hd) +: nextIter(n + 1, true, tl)
-                    else tick(hd) +: nextIter(n + 1, false, tl)
-                }
-                case x => x
+                case Nil                  => Nil
+                case hd :: tl if (n == 0) =>
+                    if (tick(hd).connection == initState.head.connection) tick(hd) +: nextIter(n + 1, state = true, tl)
+                    else tick(hd) +: nextIter(n + 1, state = false, tl)
+
+                case hd :: tl if (state) =>
+                    if (tick(hd) == initState(n)) tick(hd) +: nextIter(n + 1, state = true, tl)
+                    else tick(hd) +: nextIter(n + 1, state = false, tl)
+                case x                   => x
             }
         }
 
-        nextIter(0, false, wires)
+        nextIter(0, state = false, wires)
     }
 }
 
