@@ -67,28 +67,23 @@ object ExprInterpreter
                     case ESnd(e)                                       => evaluate(e, env)
                     case EApp(f, args)                                 => {
                         // params = Name of parameter, args = List of arguments(expr)
-                        def tempFrame(curenv: Env, lst: List[Arg], al: List[Expr]): Env = {
-                            lst match {
-                                case Nil => {
-                                    al match {
+                        @tailrec
+                        def tempFrame(curenv: Env, pars: List[Arg], ars: List[Expr]): Env = {
+                            pars match {
+                                case Nil      =>
+                                    ars match {
                                         case Nil => curenv
+                                        case _   => throw new InterpreterException("lack of args")
                                     }
-                                }
-                                case hd::tl => {
-                                    al match {
-                                        case ahd::atl => {
+                                case hd :: tl =>
+                                    ars match {
+                                        case ahd :: atl =>
                                             hd match {
-                                                case AVName(vn) => {
-                                                    evaluate(ahd, env) match {
-                                                        case eavv => tempFrame(envOps.setItem(curenv,vn,LVVal(eavv)),tl,atl)
-                                                        }
-                                                    }
-                                                }
+                                                case AVName(vn) => tempFrame(envOps.setItem(curenv, vn, LVVal(evaluate(ahd, env))), tl, atl)
                                             }
-                                        }
                                     }
-                                }
                             }
+                        }
 
 
                         evaluate(f, env) match {
@@ -112,21 +107,13 @@ object ExprInterpreter
                         @tailrec
                         def bindIter(bindings: List[Bind], env: Env): Env = {
                             bindings match {
-                                case Nil => env
-                                case hd :: tl  => {
-                                    val y = hd match {
-                                        case BDef(f, params, body) => {
-                                            envOps.setItem(env, f, LVVal(VFunc(f, params, body, env)))
-                                        }
-                                        case BVal(x, e)            => {
-                                            envOps.setItem(env, x, LVVal(evaluate(e, env)))
-                                        }
-                                        case BVal(x, e)            => {
-                                            envOps.setItem(env, x, LVLazy(e, env, Some(evaluate(e, env))))
-                                        }
-                                    }
-                                    bindIter(tl, y)
+                                case Nil      => env
+                                case hd :: tl => val y = hd match {
+                                    case BDef(f, params, body) => envOps.setItem(env, f, LVVal(VFunc(f, params, body, env)))
+                                    case BVal(x, e)            => envOps.setItem(env, x, LVVal(evaluate(e, env)))
+                                    case BLVal(x, e)           => envOps.setItem(env, x, LVLazy(e, env, Some(evaluate(e, env))))
                                 }
+                                    bindIter(tl, y)
                             }
                         }
 
